@@ -1,7 +1,7 @@
 - hosts: 119.3.50.108
   tasks:
     - name: copy conf file
-      copy: src=/etc/ansible/playbook/tools/nginxfile/jenkins.conf  dest=/etc/nginx/conf/conf.d
+      copy: src=template/jenkins.conf  dest=/etc/nginx/conf/conf.d
     - name: check conf
       shell: /usr/sbin/nginx -t 
       register: nginx_conf_result
