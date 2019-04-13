@@ -1,0 +1,10 @@
+- hosts: 119.3.50.108
+  tasks:
+    - name: copy conf file
+      copy: src=/etc/ansible/playbook/tools/nginxfile/jenkins.conf  dest=/usr/local/nginx/conf/conf.d
+    - name: check conf
+      shell: /usr/local/nginx/sbin/nginx -t 
+      register: nginx_conf_result
+    - name: reload nginx conf
+      shell: /usr/local/nginx/sbin/nginx -s reload
+      when: nginx_conf_result is succeeded
